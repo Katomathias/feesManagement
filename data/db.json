@@ -1,0 +1,39 @@
+{"payments":[
+    {
+        "id":1,
+        "name":"Moses",
+        "amount":150000,
+        "date":"2023-4-12"
+    },
+    {"id":2,
+    "name":"Martin",
+    "amount":340000,
+    "date":"2023-4-11"
+    },
+    {
+        "id":3,
+        "name":"Emily",
+        "amount":560000,
+        "date":"2023-3-11"
+    }
+],
+"Students":[
+    {
+        "id":1,
+        "name":"Martens",
+        "class":"S.4",
+        "gender":"Male"
+    },
+    {"id":2,
+    "name":"Natasha",
+    "class":"S.4",
+    "gender":"Female"
+    },
+    {
+        "id":3,
+        "name":"Emily",
+        "class":"S.6",
+        "gender":"Female"
+    }
+]
+}
