@@ -92,6 +92,7 @@ function Account() {
             </div>
         </form>
         }
+        {/*
         </div>
         <div className="acc2">
         <div className='change'>
@@ -99,6 +100,8 @@ function Account() {
         <button>Change Image</button><br/><br/>
         <button>Change Password</button>
         </div>
+        */}
+        
 
         </div>
         

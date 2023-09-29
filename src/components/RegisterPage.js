@@ -1,14 +1,36 @@
 import React , {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import icon from './images/icon.jpg';
+
 
 
 function RegisterPage() {
 const[errors, setErrors]=useState(false);
 const err_msg="Please supply all fields";
-  const handleRegister=(e)=>{
-    e.preventDefault();
+const navigate = useNavigate();
+
+const handleRegister = async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+  try {
+      const response = await fetch('http://127.0.0.1:8000/register', {
+          method: 'POST',
+          body: formData,
+      });
+
+      if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem('token', data.token);
+          navigate('/login'); // Redirect to login 
+      } else {
+          const errorData = await response.json();
+          setErrors(errorData.error);
+      }
+    } catch (error) {
+      console.error('Error:', error);
   }
+};
   const flexed={
     display:"flex",
     justifyContent:"center",

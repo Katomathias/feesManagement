@@ -30,7 +30,14 @@ function LoginPage() {
         .then((data) => {
             console.log(data);
             localStorage.setItem('token', data.token);
-         //   logIn();
+            if(data['token']){
+               // logIn();
+                alert("token available")
+            }else{
+                alert("invalid credentials")
+            }
+         
+
             navigate("/dashboard");
             //form.reset();
         })

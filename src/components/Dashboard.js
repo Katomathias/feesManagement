@@ -5,11 +5,14 @@ import Payments from './Payments';
 import Students from './Students';
 import useFetch from './useFetch';
 import Account from './Account';
+import RealChart1 from './RealChart1';
+import RealChart2 from './RealChart2';
 
 
 const InitialComponent = () => {
     const{data:payments, loading, error}=useFetch("http://localhost:8000/payments");
     const{data:stats, loading:loadstats, error:errorStats}=useFetch("http://localhost:8000/stat");
+    
     return(
         <>
             <div className='quickStats'>
@@ -30,15 +33,24 @@ const InitialComponent = () => {
                 <p>Amount count</p>  
                 </div>
             </div>
+
+            <div className='chart1'>
+            <RealChart2/>
+             <RealChart1/>
+               
+            </div>
             <div className='payments'>
+              
                 <h1>Recent Payments</h1>
                 <table>
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>Name of Student</th>
                         <th>Amount Paid (UGX)</th>
                         <th>Date</th>
                     </tr>
+                    </thead>
                     {error && <p>{error}</p>}
                     {loading && <p>Loading data ....</p>}
                     {payments && 
@@ -57,7 +69,12 @@ const InitialComponent = () => {
                         )
                         })}
                         </>
-                            }                   
+                            } 
+                            <tfoot>
+                              <tr>
+                                <td colspan="4">C/O Management</td>
+                                </tr>  
+                             </tfoot>                  
                 </table>
             </div>
         </>
@@ -74,25 +91,26 @@ function Dashboard() {
     <div className='dashboard'>
         
         <div className='div'>
+            <div className='logo'></div>
 
         <div>
-
         <img src={icon}/>
         <hr/>
         <figcaption>Mathias Kato</figcaption>
-        <small>created on 25th/june/2022</small>
-                <Link className='active' onClick={() => setCurrent("initial")}>Home</Link>
-                <Link onClick={() => setCurrent("payments")}>Payments</Link>
-                <Link onClick={() => setCurrent("students")}>Students</Link>
-                <Link onClick={() => setCurrent("account")}>My Account</Link>
-                <Link to='/'>Logout</Link> 
+        <small>created on 25th/june/2022</small> 
+        
+                <Link className='active' onClick={() => setCurrent("initial")}><i class="fa-solid fa-house"><span>   Home</span> </i></Link>
+                <Link onClick={() => setCurrent("payments")}><i class="fa-solid fa-money-bill"><span>   Payments</span> </i></Link>
+                <Link onClick={() => setCurrent("students")}><i class="fa-solid fa-school"><span>   Students</span> </i></Link>
+                <Link onClick={() => setCurrent("account")}><i class="fa-solid fa-file-invoice-dollar"><span>   My Account</span> </i></Link>
+                <Link className='logout' to='/'><i class="fa-solid fa-right-from-bracket"><span>   Logout</span> </i></Link> 
         </div>
            
         </div>
         <div className='div'>
             <div className='system_name'>
-        
-            <p>School Fees Management Online System</p>
+        <br/>
+            <p><marquee>School Fees Management Online System</marquee></p>
             </div>
             <div className='sticky'>
                 {current === 'initial' && <InitialComponent />}
